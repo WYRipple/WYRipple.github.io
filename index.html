@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>张文源 | Academic Homepage</title>
+  <link rel="icon" type="image/png" href="assets/icons/favicon.png" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #222;
+      --muted: #666;
+      --line: #e8e8e8;
+      --soft: #f7f7f7;
+      --accent: #1f4fa3;
+      --max-width: 1220px;
+      --sidebar-width: 280px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Avenir Next", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+      min-height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .nav {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .nav-brand {
+      color: #222;
+      font-size: 15px;
+      font-weight: 800;
+      margin-right: 22px;
+    }
+    .nav a {
+      color: #555;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .lang-toggle {
+      border: none;
+      background: transparent;
+      color: #333;
+      padding: 0;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .page {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 28px 24px 60px;
+      display: grid;
+      grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+      gap: 42px;
+    }
+    .sidebar {
+      position: sticky;
+      top: 92px;
+      align-self: start;
+    }
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      margin-bottom: 18px;
+      border: 1px solid var(--line);
+      background: var(--soft);
+    }
+    .name {
+      font-size: 26px;
+      font-weight: 650;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .org, .bio {
+      color: var(--muted);
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+    .sidebar-links {
+      margin-top: 18px;
+      display: grid;
+      gap: 10px;
+    }
+    .sidebar-links a, .sidebar-links span {
+      color: #333;
+      font-size: 15px;
+      word-break: break-word;
+      font-weight: 600;
+    }
+    .sidebar-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .location-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .contact-icon {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
+      display: inline-block;
+    }
+
+    .content section {
+      scroll-margin-top: 84px;
+      margin-bottom: 34px;
+    }
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 4px 0 16px;
+      line-height: 1.2;
+      color: #3f444a;
+    }
+    .section-icon {
+      font-size: 22px;
+      line-height: 1;
+      transform: translateY(-1px);
+    }
+    .subsection-title {
+      font-size: 21px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin: 26px 0 14px;
+      padding-top: 4px;
+      border-top: 1px solid var(--line);
+      color: #444b52;
+    }
+    .lead {
+      color: var(--muted);
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .news-list, .award-list, .internship-list, .coauthor-list {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .news-list li, .award-list li, .internship-list li, .coauthor-list li {
+      margin: 8px 0;
+    }
+
+    .featured-grid {
+      display: grid;
+      gap: 30px;
+    }
+    .paper-card {
+      display: grid;
+      grid-template-columns: 45% minmax(0, 1fr);
+      gap: 26px;
+      align-items: start;
+    }
+    .paper-figure {
+      position: relative;
+      width: 100%;
+      align-self: start;
+    }
+    .paper-thumb {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      border: none;
+      border-radius: 0;
+      background: var(--soft);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.18);
+    }
+    .paper-badge {
+      position: absolute;
+      top: 12px;
+      left: -10px;
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 0;
+      background: #153b9b;
+      color: #fff;
+      font-size: 12px;
+      line-height: 1.1;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      text-transform: none;
+      z-index: 2;
+    }
+    .paper-title {
+      margin: 0 0 6px;
+      font-size: 16px;
+      line-height: 1.45;
+      font-weight: 600;
+      color: #4b5056;
+    }
+    .paper-authors {
+      margin: 0 0 10px;
+      font-size: 15px;
+      line-height: 1.45;
+      color: #60656b;
+    }
+    .paper-desc {
+      margin-bottom: 10px;
+      color: #555;
+      font-size: 15px;
+    }
+    .paper-links {
+      font-size: 15px;
+      color: #666;
+      line-height: 1.6;
+    }
+    .paper-links a, .paper-links button.link-btn {
+      color: var(--accent);
+      background: none;
+      border: none;
+      padding: 0;
+      margin: 0;
+      font: inherit;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .paper-links a:hover, .paper-links button.link-btn:hover {
+      text-decoration: underline;
+    }
+    .paper-links .sep {
+      color: #999;
+      margin: 0 6px;
+    }
+    .bibtex {
+      display: none;
+      white-space: pre-wrap;
+      word-break: break-word;
+      margin-top: 10px;
+      padding: 12px 14px;
+      border-radius: 0;
+      background: #fbfbfc;
+      border-left: 3px solid #d7dce3;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #333;
+    }
+    .paper-card.show-bibtex .bibtex { display: block; }
+
+    .coauthor-list {
+      list-style: disc;
+      padding-left: 24px;
+    }
+    .coauthor-list li {
+      padding: 6px 0 8px;
+      border-bottom: none;
+    }
+    .coauthor-line1 {
+      display: block;
+      white-space: normal;
+      overflow: visible;
+      line-height: 1.45;
+    }
+    .venue-badge {
+      display: inline-block;
+      padding: 1px 7px;
+      border-radius: 0;
+      background: #153b9b;
+      color: #fff;
+      font-size: 11px;
+      line-height: 1.1;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      vertical-align: baseline;
+      margin-right: 4px;
+    }
+    .coauthor-link {
+      display: inline-block;
+      color: #6a7178;
+      font-size: 12px;
+      text-decoration: none;
+      margin: 0 4px 0 0;
+      line-height: 1;
+      vertical-align: baseline;
+    }
+    .coauthor-link:hover {
+      color: #153b9b;
+      text-decoration: none;
+    }
+    .coauthor-title {
+      font-weight: 600;
+      color: #4b5056;
+      font-size: 15px;
+      line-height: 1.35;
+    }
+    .coauthor-authors {
+      margin-top: 0;
+      color: #60656b;
+      font-size: 14px;
+      line-height: 1.35;
+      display: inline;
+      white-space: normal;
+    }
+    .author-self {
+      font-weight: 700;
+      font-style: italic;
+      color: #353a40;
+    }
+    .footer {
+      color: #888;
+      font-size: 13px;
+      padding-top: 8px;
+      border-top: 1px solid var(--line);
+      margin-top: 24px;
+    }
+
+    @media (max-width: 980px) {
+      .page {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+      .sidebar {
+        position: static;
+      }
+      .paper-card {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 720px) {
+      .topbar-inner {
+        align-items: flex-start;
+        padding-top: 12px;
+        padding-bottom: 12px;
+      }
+      .nav {
+        gap: 12px;
+      }
+      .nav a {
+        font-size: 13px;
+      }
+      .section-title {
+        font-size: 26px;
+      }
+      .subsection-title {
+        font-size: 20px;
+      }
+      .name {
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <nav class="nav" id="nav"></nav>
+      <button class="lang-toggle" id="langToggle">English</button>
+    </div>
+  </header>
+
+  <main class="page">
+    <aside class="sidebar">
+      <img class="avatar" src="assets/avatar.jpg" alt="avatar" onerror="this.onerror=null;this.src='assets/papers/placeholder.jpg'" />
+      <div class="name" id="profileName"></div>
+      <div class="name name-en" id="profileName"></div>
+      <div class="org" id="profileOrg"></div>
+      <div class="bio" id="profileBio"></div>
+      <div class="sidebar-links" id="sidebarLinks"></div>
+    </aside>
+
+    <div class="content">
+      <section id="home">
+        <div class="lead" id="homeLead"></div>
+      </section>
+
+      <section id="news">
+        <h2 class="section-title"><span class="section-icon">🔥</span><span id="newsTitle"></span></h2>
+        <ul class="news-list" id="newsList"></ul>
+      </section>
+
+      <section id="publications">
+        <h2 class="section-title"><span class="section-icon">📝</span><span id="publicationsTitle"></span></h2>
+        
+        <h3 class="subsection-title" id="featuredPreprintTitle"></h3>
+        <div class="featured-grid" id="featuredPreprint"></div>
+        
+        <h3 class="subsection-title" id="featuredPublishedTitle"></h3>
+        <div class="featured-grid" id="featuredPublished"></div>
+        
+        <h3 class="subsection-title" id="coauthorTitle"></h3>
+        <ul class="coauthor-list" id="coauthorList"></ul>
+      </section>
+
+      <section id="awards">
+        <h2 class="section-title"><span class="section-icon">🏆</span><span id="awardsTitle"></span></h2>
+        <ul class="award-list" id="awardList"></ul>
+      </section>
+
+
+      <div class="footer" id="footerText"></div>
+    </div>
+  </main>
+
+  <script>
+    const siteData = {
+      profile: {
+        zh: {
+          name: "张文源",
+          org: "UCAS",
+          bio: "目前于中国科学院大学攻读博士学位",
+          location: "Beijing, China",
+          locationIcon: "assets/icons/location.png"
+        },
+        en: {
+          name: "Wenyuan Zhang",
+          org: "UCAS",
+          bio: "Currently pursuing a Ph.D. degree at the University of Chinese Academy of Sciences.",
+          location: "Beijing, China",
+          locationIcon: "assets/icons/location.png"
+        }
+      },
+      contacts: {
+        zh: [
+            { label: "Email", href: "mailto:zhangwenyuan@iie.ac.cn", icon: "assets/icons/email.png" },
+            { label: "GitHub", href: "https://github.com/WYRipple", icon: "assets/icons/github.png" },
+            { label: "Google Scholar", href: "https://scholar.google.com/citations?user=5weUrvgAAAAJ", icon: "assets/icons/scholar.png" },
+            { label: "ORCID", href: "https://orcid.org/my-orcid?orcid=0000-0002-7287-6883", icon: "assets/icons/orcid.png" }
+        ],
+        en: [
+            { label: "Email", href: "mailto:zhangwenyuan@iie.ac.cn", icon: "assets/icons/email.png" },
+            { label: "GitHub", href: "https://github.com/WYRipple", icon: "assets/icons/github.png" },
+            { label: "Google Scholar", href: "https://scholar.google.com/citations?user=5weUrvgAAAAJ", icon: "assets/icons/scholar.png" },
+            { label: "ORCID", href: "https://orcid.org/my-orcid?orcid=0000-0002-7287-6883", icon: "assets/icons/orcid.png" }
+        ]
+      },
+      nav: {
+        zh: [
+          { id: "home", label: "About Me" },
+          { id: "news", label: "动态" },
+          { id: "publications", label: "论文" },
+          { id: "awards", label: "荣誉奖项" },
+        ],
+        en: [
+          { id: "home", label: "About Me" },
+          { id: "news", label: "News" },
+          { id: "publications", label: "Publications" },
+          { id: "awards", label: "Honors & Awards" },
+        ]
+      },
+      text: {
+        zh: {
+          homeLead: "你好！我是<a href='https://www.iie.ac.cn' target='_blank' rel='noreferrer'>中国科学院信息工程研究所</a>的博士研究生，导师是<a href='https://scholar.google.com/citations?user=JqOOSuIAAAAJ&hl=zh-CN' target='_blank' rel='noreferrer'>柳厅文</a>研究员。我曾在通义实验室实习，研究方向聚焦于大模型智能体与大模型评估。非常欢迎学术交流与合作。",
+          newsTitle: "动态",
+          publicationsTitle: "论文",
+          featuredPublishedTitle: "一作发表论文",
+          featuredPreprintTitle: "一作预印论文",
+          coauthorTitle: "合作论文",
+          awardsTitle: "荣誉奖项",
+          footerText: "Last updated: 2026.03. Powered by GitHub Pages."
+        },
+        en: {
+          homeLead: "Hi! I am a Ph.D. student at the <a href='https://www.iie.ac.cn' target='_blank' rel='noreferrer'>Institute of Information Engineering, Chinese Academy of Sciences</a>, advised by Professor <a href='https://scholar.google.com/citations?user=JqOOSuIAAAAJ&hl=zh-CN' target='_blank' rel='noreferrer'>Tingwen Liu</a>. I previously interned at Tongyi Lab. My research focuses on LLM agents and LLM evaluation. I would be very grateful for academic discussions and collaborations.",
+          newsTitle: "News",
+          publicationsTitle: "Publications",
+          featuredPublishedTitle: "First-Author Published Papers",
+          featuredPreprintTitle: "First-Author Preprints",
+          coauthorTitle: "Co-authored Papers",
+          awardsTitle: "Honors and Awards",
+          footerText: "Last updated: 2026.03. Powered by GitHub Pages."
+        }
+      },
+      news: [
+        { zh: "<em>2026.01</em>：🎉 我们的论文 “Beyond Patches: Superpixel Token-based Transformers for Attribute-Specific Fashion Retrieval” 被 WWW 2026 接收！", 
+          en: "<em>2026.01</em>: 🎉 Our paper 'Beyond Patches: Superpixel Token-based Transformers for Attribute-Specific Fashion Retrieval' has been accepted by WWW 2026!" },
+        { zh: "<em>2026.01</em>：🎉 我们的论文 “S²CDR: Smoothing-Sharpening Process Model for Cross-Domain Recommendation” 被 WWW 2026 接收！", 
+          en: "<em>2026.01</em>: 🎉 Our paper 'S²CDR: Smoothing-Sharpening Process Model for Cross-Domain Recommendation' has been accepted by WWW 2026!" },
+        { zh: "<em>2026.01</em>：🎉 我们的论文 “Fashion Microscope: Pixel-Level Attribute Perception via Optimal Transport and Neural Semantic Aggregation” 被 AAAI 2026 接收！", 
+          en: "<em>2026.01</em>: 🎉 Our paper 'Fashion Microscope: Pixel-Level Attribute Perception via Optimal Transport and Neural Semantic Aggregation' has been accepted by AAAI 2026!" },
+        { zh: "<em>2025.08</em>：🎉 我们的论文 “Revealing and Mitigating the Challenge of Detecting Character Knowledge Errors in LLM Role-Playing” 被 EMNLP 2025 接收！", 
+          en: "<em>2025.08</em>: 🎉 Our paper 'Revealing and Mitigating the Challenge of Detecting Character Knowledge Errors in LLM Role-Playing' has been accepted by EMNLP 2025!" },
+        { zh: "<em>2025.08</em>：🎉 我们的论文 “Improving Reasoning Capabilities in Small Models through Mixture-of-layers Distillation with Stepwise Attention on Key Information” 被 EMNLP 2025 接收！", 
+          en: "<em>2025.08</em>: 🎉 Our paper 'Improving Reasoning Capabilities in Small Models through Mixture-of-layers Distillation with Stepwise Attention on Key Information' has been accepted by EMNLP 2025!" },
+        { zh: "<em>2025.05</em>：🎉 我们的论文 “SOTOPIA-Ω: Dynamic Strategy Injection Learning and Social Instruction Following Evaluation for Social Agents” 被 ACL 2025 接收！", 
+          en: "<em>2025.05</em>: 🎉 Our paper 'SOTOPIA-Ω: Dynamic Strategy Injection Learning and Social Instruction Following Evaluation for Social Agents' has been accepted by ACL 2025!" },
+        { zh: "<em>2025.05</em>：🎉 我们的论文 “Don't Half-listen: Capturing Key-part Information in Continual Instruction Tuning” 被 ACL 2025 接收！", 
+          en: "<em>2025.05</em>: 🎉 Our paper 'Don't Half-listen: Capturing Key-part Information in Continual Instruction Tuning' has been accepted by ACL 2025!" },
+        { zh: "<em>2025.04</em>：🎉 我们的论文 “Incorporating Communication Style and Interaction of Speakers for Sarcasm Explanation in Dialogue” 被 SIGIR 2025 接收！", 
+          en: "<em>2025.04</em>: 🎉 Our paper 'Incorporating Communication Style and Interaction of Speakers for Sarcasm Explanation in Dialogue' has been accepted by SIGIR 2025!" },
+        { zh: "<em>2025.04</em>：🎉 我们的论文 “Dual-perspective Data Augmentation and Curriculum Learning Framework for Low-resource Complex Named Entity Recognition” 被 SIGIR 2025 接收！", 
+          en: "<em>2025.04</em>: 🎉 Our paper 'Dual-perspective Data Augmentation and Curriculum Learning Framework for Low-resource Complex Named Entity Recognition' has been accepted by SIGIR 2025!" },
+        { zh: "<em>2025.03</em>：🎉 我们的论文 “Personalized Multi-Interest Modeling for Cross-Domain Recommendation to Cold-Start Users” 被 ICDE 2025 接收！", 
+          en: "<em>2025.03</em>: 🎉 Our paper 'Personalized Multi-Interest Modeling for Cross-Domain Recommendation to Cold-Start Users' has been accepted by ICDE 2025!" },
+        
+      ],
+      
+      featuredPublished: [
+        {
+          image: "assets/papers/sotopia-omega.jpg",
+          badge: { zh: "ACL 2025", en: "ACL 2025" },
+          title: { zh: "SOTOPIA-Ω: Dynamic Strategy Injection Learning and Social Instruction Following Evaluation for Social Agents", en: "SOTOPIA-Ω: Dynamic Strategy Injection Learning and Social Instruction Following Evaluation for Social Agents" },
+          authors: { zh: "Wenyuan Zhang, Tianyun Liu, Mengxiao Song, Xiaodong Li, Tingwen Liu", en: "Wenyuan Zhang, Tianyun Liu, Mengxiao Song, Xiaodong Li, Tingwen Liu" },
+          summary: { zh: "目标导向的社交智能体容易产生交互僵局问题。研究借鉴谈判学理论设计了三种策略注入方案和步骤级奖励，使用教师模型自博弈的方法，构造了25.9K高质量对话训练数据，显著提升学生模型社交能力。此外补充设计了目标相关性与话语多样性两种社交指令遵循评估指标。", en: "Goal-oriented social agents are prone to interaction deadlocks. Drawing on negotiation theory, this study designs three strategy injection schemes and step-level rewards, and constructs 25.9K high-quality dialogue training instances through teacher-model self-play, substantially enhancing the social capabilities of student models. In addition, it introduces two evaluation metrics for social instruction following: goal relevance and utterance diversity." },
+          paperUrl: "https://aclanthology.org/2025.acl-long.1203/",
+          codeUrl: "https://github.com/WYRipple/SOTOPIA-Omega",
+          resourceLinks: [
+            { label: "models", url: "https://huggingface.co/collections/WYRipple/sotopia-checkpoints" },
+            { label: "data", url: "https://huggingface.co/datasets/WYRipple/sotopia-omega" }
+          ],
+          bibtex: `@inproceedings{zhang-etal-2025-sotopia,
+    title = "{SOTOPIA}-{\\ensuremath{\\Omega}}: Dynamic Strategy Injection Learning and Social Instruction Following Evaluation for Social Agents",
+    author = "Zhang, Wenyuan  and
+      Liu, Tianyun  and
+      Song, Mengxiao  and
+      Li, Xiaodong  and
+      Liu, Tingwen",
+    editor = "Che, Wanxiang  and
+      Nabende, Joyce  and
+      Shutova, Ekaterina  and
+      Pilehvar, Mohammad Taher",
+    booktitle = "Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = jul,
+    year = "2025",
+    address = "Vienna, Austria",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2025.acl-long.1203/",
+    doi = "10.18653/v1/2025.acl-long.1203",
+    pages = "24669--24697",
+    ISBN = "979-8-89176-251-0",
+}`
+        },
+        {
+          image: "assets/papers/role-playing-errors.jpg",
+          badge: { zh: "EMNLP 2025", en: "EMNLP 2025" },
+          title: { zh: "Revealing and Mitigating the Challenge of Detecting Character Knowledge Errors in LLM Role-Playing", en: "Revealing and Mitigating the Challenge of Detecting Character Knowledge Errors in LLM Role-Playing" },
+          authors: { zh: "Wenyuan Zhang, Shuaiyi Nie, Jiawei Sheng, Zefeng Zhang, Xinghua Zhang, Yongquan He, Tingwen Liu", en: "Wenyuan Zhang, Shuaiyi Nie, Jiawei Sheng, Zefeng Zhang, Xinghua Zhang, Yongquan He, Tingwen Liu" },
+          summary: { zh: "基于角色认知类外错误和四类记忆类型，构建角色知识错误识别基准RoleKE-Bench。进一步设计智能体两阶段推理方法S²RD，显著提升错误识别能力。", en: "Based on out-of-character knowledge errors and four memory types, this work constructs RoleKE-Bench, a benchmark for character knowledge error detection. It further proposes a two-stage reasoning method for agents, S²RD, which significantly improves error detection performance." },
+          paperUrl: "https://aclanthology.org/2025.emnlp-main.1689/",
+          codeUrl: "https://github.com/WYRipple/rp_kw_errors",
+          resourceLinks: [
+            { label: "data", url: "https://huggingface.co/datasets/WYRipple/RoleKE-Bench" }
+          ],
+          bibtex: `@inproceedings{zhang-etal-2025-revealing,
+    title = "Revealing and Mitigating the Challenge of Detecting Character Knowledge Errors in {LLM} Role-Playing",
+    author = "Zhang, Wenyuan  and
+      Nie, Shuaiyi  and
+      Sheng, Jiawei  and
+      Zhang, Zefeng  and
+      Zhang, Xinghua  and
+      He, Yongquan  and
+      Liu, Tingwen",
+    editor = "Christodoulopoulos, Christos  and
+      Chakraborty, Tanmoy  and
+      Rose, Carolyn  and
+      Peng, Violet",
+    booktitle = "Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing",
+    month = nov,
+    year = "2025",
+    address = "Suzhou, China",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2025.emnlp-main.1689/",
+    doi = "10.18653/v1/2025.emnlp-main.1689",
+    pages = "33279--33302",
+    ISBN = "979-8-89176-332-6",
+}`
+        },
+        {
+          image: "assets/papers/dont-half-listen.jpg",
+          badge: { zh: "ACL 2025", en: "ACL 2025" },
+          title: { zh: "Don't Half-listen: Capturing Key-part Information in Continual Instruction Tuning", en: "Don't Half-listen: Capturing Key-part Information in Continual Instruction Tuning" },
+          authors: { zh: "Yongquan He*, Wenyuan Zhang*, Xuancheng Huang*, Peng Zhang, Lingxun Meng, Xiang Zhou, Ke Zeng, Xunliang Cai", en: "Yongquan He*, Wenyuan Zhang*, Xuancheng Huang*, Peng Zhang, Lingxun Meng, Xiang Zhou, Ke Zeng, Xunliang Cai" },
+          summary: { zh: "为了缓解大模型持续指令微调的过度关注指令结构、忽略关键指令实体的偏差问题，设计了关键部分信息增益微调算法，通过扩展指令训练数据、扩大完整指令和掩码指令结构分布差距，并重放多个低信息增益任务，总体提升了指令遵循与泛化能力。", en: "To address the tendency of large language models in continual instruction tuning to overemphasize instruction structure while overlooking key instruction entities, this study proposes a key-part information gain tuning algorithm. By augmenting instruction training data, enlarging the distribution gap between complete instructions and masked instructions, and replaying multiple low-information-gain tasks, the method improves both instruction-following and generalization performance overall." },
+          paperUrl: "https://aclanthology.org/2025.acl-long.1153",
+          codeUrl: "#",
+          resourceLinks: [],
+          bibtex: `@inproceedings{he-etal-2025-dont,
+    title = "Don{'}t Half-listen: Capturing Key-part Information in Continual Instruction Tuning",
+    author = "He, Yongquan  and
+      Zhang, Wenyuan  and
+      Huang, Xuancheng  and
+      Zhang, Peng  and
+      Meng, Lingxun  and
+      Zhou, Xiang  and
+      Zeng, Ke  and
+      Cai, Xunliang",
+    editor = "Che, Wanxiang  and
+      Nabende, Joyce  and
+      Shutova, Ekaterina  and
+      Pilehvar, Mohammad Taher",
+    booktitle = "Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = jul,
+    year = "2025",
+    address = "Vienna, Austria",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2025.acl-long.1153/",
+    doi = "10.18653/v1/2025.acl-long.1153",
+    pages = "23649--23668",
+    ISBN = "979-8-89176-251-0",
+}`
+        }
+      ],
+      
+      featuredPreprint: [
+        {
+          image: "assets/papers/expseek.jpg",
+          badge: { zh: "preprint 2026", en: "preprint 2026" },
+          title: { zh: "ExpSeek: Self-Triggered Experience Seeking for Web Agents", en: "ExpSeek: Self-Triggered Experience Seeking for Web Agents" },
+          authors: { zh: "Wenyuan Zhang, Xinghua Zhang, Haiyang Yu, Shuaiyi Nie, Bingli Wu, Juwei Yue, Tingwen Liu, Yongbin Li", en: "Wenyuan Zhang, Xinghua Zhang, Haiyang Yu, Shuaiyi Nie, Bingli Wu, Juwei Yue, Tingwen Liu, Yongbin Li" },
+          summary: { zh: "针对DeepResearch场景，现有经验增强方法大都全局被动注入，缺乏动态的经验干预时机和内容。研究主要设计了（1）步骤级经验干预（2）步骤熵触发的经验索取机制（3）基于经验模型进行上下文感知的经验改写，大幅度提升性能。", en: "For deep research scenarios, most existing experience-enhanced methods rely on passive global injection, lacking dynamic mechanisms for determining when and what experience should be introduced. This study mainly proposes (1) step-level experience intervention, (2) an entropy-triggered experience-seeking mechanism, and (3) context-aware experience rewriting based on an experience model, leading to substantial performance gains." },
+          paperUrl: "https://arxiv.org/abs/2601.08605",
+          codeUrl: "https://github.com/WYRipple/ExpSeek",
+          resourceLinks: [],
+          bibtex: `@misc{zhang2026expseekselftriggeredexperienceseeking,
+      title={ExpSeek: Self-Triggered Experience Seeking for Web Agents},
+      author={Wenyuan Zhang and Xinghua Zhang and Haiyang Yu and Shuaiyi Nie and Bingli Wu and Juwei Yue and Tingwen Liu and Yongbin Li},
+      year={2026},
+      eprint={2601.08605},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2601.08605},
+}`
+        },
+        {
+          image: "assets/papers/system1.jpg",
+          badge: { zh: "preprint 2025", en: "preprint 2025" },
+          title: { zh: "Exploring the System 1 Thinking Capability of Large Reasoning Models", en: "Exploring the System 1 Thinking Capability of Large Reasoning Models" },
+          authors: { zh: "Wenyuan Zhang*, Shuaiyi Nie*, Xinghua Zhang, Zefeng Zhang, Tingwen Liu", en: "Wenyuan Zhang*, Shuaiyi Nie*, Xinghua Zhang, Zefeng Zhang, Tingwen Liu" },
+          summary: { zh: "研究构建了大推理模型（LRM）的快思考基准S1-Bench，并从效率、准度、RL方法和模型表征四个角度深入分析LRM的快思考能力，发现现有LRMs在系统一问题上存在欠准确、低效率的问题，并揭示了RL高效推理方法的局限性，发现了LRMs难度早期感知现象。", en: "This study constructs S1-Bench, a benchmark for fast thinking in large reasoning models (LRMs), and provides an in-depth analysis of their fast-thinking capability from four perspectives: efficiency, accuracy, reinforcement learning methods, and model representations. The results show that existing LRMs remain both inaccurate and inefficient on System 1 tasks, reveal the limitations of RL-based efficient reasoning methods, and uncover an early difficulty-perception phenomenon in LRMs." },
+          paperUrl: "https://arxiv.org/abs/2504.10368",
+          codeUrl: "https://github.com/WYRipple/S1_Bench",
+          resourceLinks: [
+            { label: "data", url: "https://huggingface.co/datasets/WYRipple/S1-Bench" }
+          ],
+          bibtex: `@misc{zhang2025s1benchsimplebenchmarkevaluating,
+      title={S1-Bench: A Simple Benchmark for Evaluating System 1 Thinking Capability of Large Reasoning Models},
+      author={Wenyuan Zhang and Shuaiyi Nie and Xinghua Zhang and Zefeng Zhang and Tingwen Liu},
+      year={2025},
+      eprint={2504.10368},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2504.10368},
+}`
+        }
+      ],
+      
+      coauthors: [
+        { venue: "WWW 2026", url: "#publications", title: "Beyond Patches: Superpixel Token-based Transformers for Attribute-Specific Fashion Retrieval", authorsZh: "Shuili Zhang, Hongzhang Mu, Wenyuan Zhang, Duohe Ma, Tingwen Liu", authorsEn: "Shuili Zhang, Hongzhang Mu, Wenyuan Zhang, Duohe Ma, Tingwen Liu" },
+        { venue: "WWW 2026", url: "https://arxiv.org/abs/2603.02725", title: "S²CDR: Smoothing-Sharpening Process Model for Cross-Domain Recommendation", authorsZh: "Xiaodong Li, Juwei Yue, Xinghua Zhang, Jiawei Sheng, Wenyuan Zhang, Taoyu Su, Zefeng Zhang, Tingwen Liu", authorsEn: "Xiaodong Li, Juwei Yue, Xinghua Zhang, Jiawei Sheng, Wenyuan Zhang, Taoyu Su, Zefeng Zhang, Tingwen Liu" },
+        { venue: "AAAI 2026", url: "https://ojs.aaai.org/index.php/AAAI/article/view/38672", title: "Fashion Microscope: Pixel-Level Attribute Perception via Optimal Transport and Neural Semantic Aggregation", authorsZh: "Shuili Zhang, Hongzhang Mu, Jiawei Sheng, Qianqian Tong, Wenyuan Zhang, Quangang Li, Tingwen Liu", authorsEn: "Shuili Zhang, Hongzhang Mu, Jiawei Sheng, Qianqian Tong, Wenyuan Zhang, Quangang Li, Tingwen Liu" },
+        { venue: "EMNLP 2025", url: "https://aclanthology.org/2025.emnlp-main.250/", title: "Improving Reasoning Capabilities in Small Models through Mixture-of-layers Distillation with Stepwise Attention on Key Information", authorsZh: "Yao Chen, Jiawei Sheng, Wenyuan Zhang, Tingwen Liu", authorsEn: "Yao Chen, Jiawei Sheng, Wenyuan Zhang, Tingwen Liu" },
+        { venue: "SIGIR 2025", url: "https://dl.acm.org/doi/abs/10.1145/3726302.3730006", title: "Incorporating Communication Style and Interaction of Speakers for Sarcasm Explanation in Dialogue", authorsZh: "Yuqing Li, Wenyuan Zhang, Zheng Lin, Guoxuan Ding, Weiping Wang", authorsEn: "Yuqing Li, Wenyuan Zhang, Zheng Lin, Guoxuan Ding, Weiping Wang" },
+        { venue: "SIGIR 2025", url: "https://dl.acm.org/doi/abs/10.1145/3726302.3730180", title: "Dual-perspective Data Augmentation and Curriculum Learning Framework for Low-resource Complex Named Entity Recognition", authorsZh: "Mengxiao Song, Tianyun Liu, Wenyuan Zhang, Quangang Li, Tingwen Liu", authorsEn: "Mengxiao Song, Tianyun Liu, Wenyuan Zhang, Quangang Li, Tingwen Liu" },
+        { venue: "ICDE 2025", url: "https://ieeexplore.ieee.org/abstract/document/11112853/", title: "Personalized Multi-Interest Modeling for Cross-Domain Recommendation to Cold-Start Users", authorsZh: "Xiaodong Li, Jiawei Sheng, Jiangxia Cao, Xinghua Zhang, Wenyuan Zhang, Yong Sun, Shirui Pan, Zhihong Tian, Tingwen Liu", authorsEn: "Xiaodong Li, Jiawei Sheng, Jiangxia Cao, Xinghua Zhang, Wenyuan Zhang, Yong Sun, Shirui Pan, Zhihong Tian, Tingwen Liu" },
+        { venue: "KDD Workshop 2024", url: "https://arxiv.org/abs/2311.18580", title: "Fft: Towards harmlessness evaluation and analysis for llms with factuality, fairness, toxicity", authorsZh: "Shiyao Cui*, Zhenyu Zhang*, Yilong Chen, Wenyuan Zhang, Tianyun Liu, Siqi Wang, Tingwen Liu", authorsEn: "Shiyao Cui*, Zhenyu Zhang*, Yilong Chen, Wenyuan Zhang, Tianyun Liu, Siqi Wang, Tingwen Liu" },
+        { venue: "WSDM 2024", url: "https://dl.acm.org/doi/abs/10.1145/3616855.3635794", title: "CDRNP: Cross-Domain Recommendation to Cold-Start Users via Neural Process", authorsZh: "Xiaodong Li, Jiawei Sheng, Jiangxia Cao, Wenyuan Zhang, Quangang Li, Tingwen Liu", authorsEn: "Xiaodong Li, Jiawei Sheng, Jiangxia Cao, Wenyuan Zhang, Quangang Li, Tingwen Liu" },
+        { venue: "ACL Findings 2024", url: "https://aclanthology.org/2024.findings-acl.243/", title: "Optimal Transport Guided Correlation Assignment for Multimodal Entity Linking", authorsZh: "Zefeng Zhang*, Jiawei Sheng*, Chuang Zhang, Yunzhi Liang, Wenyuan Zhang, Siqi Wang, Tingwen Liu", authorsEn: "Zefeng Zhang*, Jiawei Sheng*, Chuang Zhang, Yunzhi Liang, Wenyuan Zhang, Siqi Wang, Tingwen Liu" },
+        { venue: "ICASSP 2024", url: "https://ieeexplore.ieee.org/abstract/document/10447873", title: "Dynamic Multi-Scale Context Aggregation for Conversational Aspect-Based Sentiment Quadruple Analysis", authorsZh: "Yuqing Li, Wenyuan Zhang, Binbin Li, Siyu Jia, Zisen Qi, Xingbang Tan", authorsEn: "Yuqing Li, Wenyuan Zhang, Binbin Li, Siyu Jia, Zisen Qi, Xingbang Tan" },
+        { venue: "ICASSP 2024", url: "https://ieeexplore.ieee.org/abstract/document/10447079", title: "Improving Chinese Spelling Correction with Text-Phonetics Differentiation and Adaptive Fusion", authorsZh: "Wenhao Zhang, Shiyao Cui, Wenyuan Zhang, Xinghua Zhang, Tingwen Liu, Hongbo Xu", authorsEn: "Wenhao Zhang, Shiyao Cui, Wenyuan Zhang, Xinghua Zhang, Tingwen Liu, Hongbo Xu" },
+        { venue: "EMNLP Findings 2023", url: "https://aclanthology.org/2023.findings-emnlp.389/", title: "Learning to Correct Noisy Labels for Fine-Grained Entity Typing via Co-Prediction Prompt Tuning", authorsZh: "Minghao Tang, Yongquan He, Yongxiu Xu, Hongbo Xu, Wenyuan Zhang, Yang Lin", authorsEn: "Minghao Tang, Yongquan He, Yongxiu Xu, Hongbo Xu, Wenyuan Zhang, Yang Lin" },
+        { venue: "EMNLP Findings 2023", url: "https://aclanthology.org/2023.findings-emnlp.989/", title: "A Boundary Offset Prediction Network for Named Entity Recognition", authorsZh: "Minghao Tang, Yongquan He, Yongxiu Xu, Hongbo Xu, Wenyuan Zhang, Yang Lin", authorsEn: "Minghao Tang, Yongquan He, Yongxiu Xu, Hongbo Xu, Wenyuan Zhang, Yang Lin" },
+        { venue: "IJCAI 2021", url: "https://www.ijcai.org/proceedings/2021/264", title: "HIP Network: Historical Information Passing Network for Extrapolation Reasoning on Temporal Knowledge Graph", authorsZh: "Yongquan He, Peng Zhang, Luchen Liu, Qi Liang, Wenyuan Zhang, Chuang Zhang", authorsEn: "Yongquan He, Peng Zhang, Luchen Liu, Qi Liang, Wenyuan Zhang, Chuang Zhang" }
+      ],
+      awards: [
+        { zh: "🥉 2025年中国计算语言学大会（CCL）中文叙实性推理评测三等奖", 
+          en: "🥉 Third Prize in the Chinese Narrative Reasoning Evaluation at CCL 2025" },
+        { zh: "🏅 2023年语言与智能技术竞赛语言模型无害性评估一等奖", 
+          en: "🏅 First Prize in the Harmlessness Evaluation of Language Models at the Language and Intelligence Technology Competition 2023" },
+        { zh: "🏅 2023年中国计算语言学大会（CCL）古籍命名实体识别评测一等奖", 
+          en: "🏅 First Prize in the Ancient Text Named Entity Recognition Evaluation at CCL 2023" },
+
+
+      ],
+      internships: [
+        { zh: "xxx - xxx，xxx单位，xxx地点。这里填写实习内容简介。", en: "xxx - xxx, xxx organization, xxx location. Add a short description of your internship here." }
+      ]
+    };
+
+    let currentLang = 'zh';
+
+    function highlightSelfName(text) {
+      return text.replaceAll('Wenyuan Zhang', '<span class="author-self">Wenyuan Zhang</span>');
+    }
+
+    function escapeHtml(text) {
+      return text
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function createNav() {
+      const nav = document.getElementById('nav');
+      const brand = '<a href="#home" class="nav-brand">Homepage</a>';
+      const items = siteData.nav[currentLang].map(item => `<a href="#${item.id}">${item.label}</a>`).join('');
+      nav.innerHTML = brand + items;
+    }
+
+    function renderProfile() {
+      const profile = siteData.profile[currentLang];
+      document.getElementById('profileName').textContent = profile.name;
+      document.getElementById('profileOrg').textContent = profile.org;
+      document.getElementById('profileBio').textContent = profile.bio;
+
+      const links = [
+        `<span class="location-item">
+            <img src="${profile.locationIcon}" alt="location" class="contact-icon" />
+            <span>${profile.location}</span>
+        </span>`
+        ].concat(
+        siteData.contacts[currentLang].map(item =>
+            `<a href="${item.href}" target="_blank" rel="noreferrer">
+            <img src="${item.icon}" alt="${item.label}" class="contact-icon" />
+            <span>${item.label}</span>
+            </a>`
+        )
+      );
+      document.getElementById('sidebarLinks').innerHTML = links.join('');
+    }
+
+    function renderStaticText() {
+      const text = siteData.text[currentLang];
+      document.getElementById('homeLead').innerHTML = text.homeLead;
+      document.getElementById('newsTitle').textContent = text.newsTitle;
+      document.getElementById('publicationsTitle').textContent = text.publicationsTitle;
+      document.getElementById('featuredPublishedTitle').textContent = text.featuredPublishedTitle;
+      document.getElementById('featuredPreprintTitle').textContent = text.featuredPreprintTitle;
+      document.getElementById('coauthorTitle').textContent = text.coauthorTitle;
+      document.getElementById('awardsTitle').textContent = text.awardsTitle;
+      document.getElementById('footerText').textContent = text.footerText;
+    }
+
+    function renderNews() {
+      document.getElementById('newsList').innerHTML = siteData.news.map(item => `<li>${item[currentLang]}</li>`).join('');
+    }
+
+    function toggleBibtex(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.toggle('show-bibtex');
+    }
+
+    function renderFeatured(containerId, papers) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = papers.map((paper, idx) => {
+        const id = `${containerId}-${idx}`;
+        const links = [];
+        if (paper.paperUrl && paper.paperUrl !== '#') links.push(`<a href="${paper.paperUrl}" target="_blank" rel="noreferrer">pdf</a>`);
+        if (paper.codeUrl && paper.codeUrl !== '#') links.push(`<a href="${paper.codeUrl}" target="_blank" rel="noreferrer">code</a>`);
+        if (Array.isArray(paper.resourceLinks)) {
+          paper.resourceLinks.forEach(item => {
+            if (item && item.url) links.push(`<a href="${item.url}" target="_blank" rel="noreferrer">${item.label}</a>`);
+          });
+        }
+        links.push(`<button class="link-btn" type="button" onclick="toggleBibtex('${id}')">bibtex</button>`);
+        return `
+          <article class="paper-card" id="${id}">
+            <div class="paper-figure">
+              <span class="paper-badge">${paper.badge[currentLang]}</span>
+              <img class="paper-thumb" src="${paper.image}" alt="${paper.title.en}" onerror="this.onerror=null;this.src='assets/papers/placeholder.jpg'" />
+            </div>
+            <div>
+              <h4 class="paper-title">${paper.title[currentLang]}</h4>
+              <div class="paper-authors">${highlightSelfName(paper.authors[currentLang])}</div>
+              <div class="paper-desc">${paper.summary[currentLang]}</div>
+              <div class="paper-links">${links.join('<span class="sep">|</span>')}</div>
+              <div class="bibtex">${escapeHtml(paper.bibtex || 'xxx')}</div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function renderCoauthors() {
+      const list = document.getElementById('coauthorList');
+      list.innerHTML = siteData.coauthors.map(item => `
+        <li>
+          <div class="coauthor-line1">
+            <span class="venue-badge">${item.venue}</span><a class="coauthor-link" href="${item.url || '#'}" target="_blank" rel="noreferrer" aria-label="paper link">↗</a><span class="coauthor-title">${item.title}.</span> <span class="coauthor-authors">${highlightSelfName(currentLang === 'zh' ? item.authorsZh : item.authorsEn)}</span>
+          </div>
+        </li>
+      `).join('');
+    }
+
+    function renderAwards() {
+      document.getElementById('awardList').innerHTML = siteData.awards.map(item => `<li>${item[currentLang]}</li>`).join('');
+    }
+
+    function renderAll() {
+      document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
+      document.getElementById('langToggle').textContent = currentLang === 'zh' ? 'English' : '中文';
+      createNav();
+      renderProfile();
+      renderStaticText();
+      renderNews();
+      renderFeatured('featuredPublished', siteData.featuredPublished);
+      renderFeatured('featuredPreprint', siteData.featuredPreprint);
+      renderCoauthors();
+      renderAwards();
+    }
+
+    document.getElementById('langToggle').addEventListener('click', () => {
+      currentLang = currentLang === 'zh' ? 'en' : 'zh';
+      renderAll();
+    });
+
+    renderAll();
+  </script>
+</body>
+</html>
