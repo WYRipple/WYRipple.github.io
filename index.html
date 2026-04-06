@@ -500,6 +500,12 @@
         }
       },
       news: [
+        { zh: "<em>2026.04</em>：🎉 我们的论文 “HyperMem: Hypergraph Memory for Long-Term Conversations” 被 ACL 2026 接收！", 
+          en: "<em>2026.04</em>: 🎉 Our paper 'HyperMem: Hypergraph Memory for Long-Term Conversations' has been accepted by ACL 2026!" },
+        { zh: "<em>2026.04</em>：🎉 我们的论文 “AttnPO: Attention-Guided Process Supervision for Efficient Reasoning” 被 ACL 2026 接收！", 
+          en: "<em>2026.04</em>: 🎉 Our paper 'AttnPO: Attention-Guided Process Supervision for Efficient Reasoning' has been accepted by ACL 2026!" },
+        { zh: "<em>2026.04</em>：🎉 我们的论文 “ExpSeek: Self-Triggered Experience Seeking for Web Agents” 被 ACL 2026 接收！", 
+          en: "<em>2026.04</em>: 🎉 Our paper 'ExpSeek: Self-Triggered Experience Seeking for Web Agents' has been accepted by ACL 2026!" },
         { zh: "<em>2026.03</em>：🔥 我们的论文 “<a href='https://github.com/WYRipple/ExpSeek' target='_blank' rel='noreferrer'>ExpSeek: Self-Triggered Experience Seeking for Web Agents</a>“ 的代码已经全面开源，包括高质量经验构建、熵触发的Agent推理增强和消融实验，我们也提供了详细的代码文档！此外，代码包含了一个基础的多轮ReAct极简推理框架，适合需要基于ReAct进行实验的朋友们，欢迎Star！", 
           en: "<em>2026.03</em>: 🔥 The code for our paper '<a href='https://github.com/WYRipple/ExpSeek' target='_blank' rel='noreferrer'>ExpSeek: Self-Triggered Experience Seeking for Web Agents</a>' has been fully open-sourced, including high-quality experience construction, entropy-triggered agent inference enhancement, and ablation studies. We also provide detailed documentation. In addition, the repository includes a lightweight multi-turn ReAct reasoning framework, which may be helpful for researchers and practitioners who want to build on ReAct. Feel free to star the repo!" },
         { zh: "<em>2026.01</em>：🎉 我们的论文 “Beyond Patches: Superpixel Token-based Transformers for Attribute-Specific Fashion Retrieval” 被 WWW 2026 接收！", 
@@ -526,6 +532,25 @@
       ],
       
       featuredPublished: [
+                {
+          image: "assets/papers/expseek.jpg",
+          badge: { zh: "ACL FINDINGS 2026", en: "ACL FINDINGS 2026" },
+          title: { zh: "ExpSeek: Self-Triggered Experience Seeking for Web Agents", en: "ExpSeek: Self-Triggered Experience Seeking for Web Agents" },
+          authors: { zh: "Wenyuan Zhang, Xinghua Zhang, Haiyang Yu, Shuaiyi Nie, Bingli Wu, Juwei Yue, Tingwen Liu, Yongbin Li", en: "Wenyuan Zhang, Xinghua Zhang, Haiyang Yu, Shuaiyi Nie, Bingli Wu, Juwei Yue, Tingwen Liu, Yongbin Li" },
+          summary: { zh: "针对DeepResearch场景，现有经验增强方法大都全局被动注入，缺乏动态的经验干预时机和内容。研究主要设计了（1）步骤级经验干预（2）步骤熵触发的经验索取机制（3）基于经验模型进行上下文感知的经验改写，大幅度提升性能。", en: "For deep research scenarios, most existing experience-enhanced methods rely on passive global injection, lacking dynamic mechanisms for determining when and what experience should be introduced. This study mainly proposes (1) step-level experience intervention, (2) an entropy-triggered experience-seeking mechanism, and (3) context-aware experience rewriting based on an experience model, leading to substantial performance gains." },
+          paperUrl: "https://arxiv.org/abs/2601.08605",
+          codeUrl: "https://github.com/WYRipple/ExpSeek",
+          resourceLinks: [],
+          bibtex: `@misc{zhang2026expseekselftriggeredexperienceseeking,
+      title={ExpSeek: Self-Triggered Experience Seeking for Web Agents},
+      author={Wenyuan Zhang and Xinghua Zhang and Haiyang Yu and Shuaiyi Nie and Bingli Wu and Juwei Yue and Tingwen Liu and Yongbin Li},
+      year={2026},
+      eprint={2601.08605},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2601.08605},
+}`
+        },
         {
           image: "assets/papers/sotopia-omega.jpg",
           badge: { zh: "ACL 2025", en: "ACL 2025" },
@@ -655,25 +680,6 @@
       
       featuredPreprint: [
         {
-          image: "assets/papers/expseek.jpg",
-          badge: { zh: "preprint 2026", en: "preprint 2026" },
-          title: { zh: "ExpSeek: Self-Triggered Experience Seeking for Web Agents", en: "ExpSeek: Self-Triggered Experience Seeking for Web Agents" },
-          authors: { zh: "Wenyuan Zhang, Xinghua Zhang, Haiyang Yu, Shuaiyi Nie, Bingli Wu, Juwei Yue, Tingwen Liu, Yongbin Li", en: "Wenyuan Zhang, Xinghua Zhang, Haiyang Yu, Shuaiyi Nie, Bingli Wu, Juwei Yue, Tingwen Liu, Yongbin Li" },
-          summary: { zh: "针对DeepResearch场景，现有经验增强方法大都全局被动注入，缺乏动态的经验干预时机和内容。研究主要设计了（1）步骤级经验干预（2）步骤熵触发的经验索取机制（3）基于经验模型进行上下文感知的经验改写，大幅度提升性能。", en: "For deep research scenarios, most existing experience-enhanced methods rely on passive global injection, lacking dynamic mechanisms for determining when and what experience should be introduced. This study mainly proposes (1) step-level experience intervention, (2) an entropy-triggered experience-seeking mechanism, and (3) context-aware experience rewriting based on an experience model, leading to substantial performance gains." },
-          paperUrl: "https://arxiv.org/abs/2601.08605",
-          codeUrl: "https://github.com/WYRipple/ExpSeek",
-          resourceLinks: [],
-          bibtex: `@misc{zhang2026expseekselftriggeredexperienceseeking,
-      title={ExpSeek: Self-Triggered Experience Seeking for Web Agents},
-      author={Wenyuan Zhang and Xinghua Zhang and Haiyang Yu and Shuaiyi Nie and Bingli Wu and Juwei Yue and Tingwen Liu and Yongbin Li},
-      year={2026},
-      eprint={2601.08605},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2601.08605},
-}`
-        },
-        {
           image: "assets/papers/system1.jpg",
           badge: { zh: "preprint 2025", en: "preprint 2025" },
           title: { zh: "Exploring the System 1 Thinking Capability of Large Reasoning Models", en: "Exploring the System 1 Thinking Capability of Large Reasoning Models" },
@@ -697,6 +703,8 @@
       ],
       
       coauthors: [
+        { venue: "ACL 2026", url: "#publications", title: "HyperMem: Hypergraph Memory for Long-Term Conversations", authorsZh: "Juwei Yue, Chuanrui Hu, Jiawei Sheng, Zuyi Zhou, Wenyuan Zhang, Tingwen Liu, Li Guo, Yafeng Deng", authorsEn: "Juwei Yue, Chuanrui Hu, Jiawei Sheng, Zuyi Zhou, Wenyuan Zhang, Tingwen Liu, Li Guo, Yafeng Deng" },
+        { venue: "ACL 2026", url: "https://arxiv.org/abs/2602.09953", title: "AttnPO: Attention-Guided Process Supervision for Efficient Reasoning", authorsZh: "Shuaiyi Nie, Siyu Ding, Wenyuan Zhang, Linhao Yu, Tianmeng Yang, YaoChen, Weichong Yin, Yu Sun, Hua Wu, Tingwen Liu", authorsEn: "Shuaiyi Nie, Siyu Ding, Wenyuan Zhang, Linhao Yu, Tianmeng Yang, YaoChen, Weichong Yin, Yu Sun, Hua Wu, Tingwen Liu" },
         { venue: "WWW 2026", url: "#publications", title: "Beyond Patches: Superpixel Token-based Transformers for Attribute-Specific Fashion Retrieval", authorsZh: "Shuili Zhang, Hongzhang Mu, Wenyuan Zhang, Duohe Ma, Tingwen Liu", authorsEn: "Shuili Zhang, Hongzhang Mu, Wenyuan Zhang, Duohe Ma, Tingwen Liu" },
         { venue: "WWW 2026", url: "https://arxiv.org/abs/2603.02725", title: "S²CDR: Smoothing-Sharpening Process Model for Cross-Domain Recommendation", authorsZh: "Xiaodong Li, Juwei Yue, Xinghua Zhang, Jiawei Sheng, Wenyuan Zhang, Taoyu Su, Zefeng Zhang, Tingwen Liu", authorsEn: "Xiaodong Li, Juwei Yue, Xinghua Zhang, Jiawei Sheng, Wenyuan Zhang, Taoyu Su, Zefeng Zhang, Tingwen Liu" },
         { venue: "AAAI 2026", url: "https://ojs.aaai.org/index.php/AAAI/article/view/38672", title: "Fashion Microscope: Pixel-Level Attribute Perception via Optimal Transport and Neural Semantic Aggregation", authorsZh: "Shuili Zhang, Hongzhang Mu, Jiawei Sheng, Qianqian Tong, Wenyuan Zhang, Quangang Li, Tingwen Liu", authorsEn: "Shuili Zhang, Hongzhang Mu, Jiawei Sheng, Qianqian Tong, Wenyuan Zhang, Quangang Li, Tingwen Liu" },
