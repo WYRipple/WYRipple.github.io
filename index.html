@@ -486,7 +486,7 @@
           featuredPreprintTitle: "一作预印论文",
           coauthorTitle: "合作论文",
           awardsTitle: "荣誉奖项",
-          footerText: "Last updated: 2026.04. Powered by GitHub Pages."
+          footerText: "Last updated: 2026.05. Powered by GitHub Pages."
         },
         en: {
           homeLead: "Hi! I am a Ph.D. student at the <a href='https://www.iie.ac.cn' target='_blank' rel='noreferrer'>Institute of Information Engineering, Chinese Academy of Sciences</a>, advised by Professor <a href='https://scholar.google.com/citations?user=JqOOSuIAAAAJ&hl=zh-CN' target='_blank' rel='noreferrer'>Tingwen Liu</a>. My Ph.D. research focuses on Social Language Agents, LLM agents, and LLM Evaluation. In addition, I am also familiar with Affective Computing, Federated Learning, and Distributed Consensus Mechanisms. I previously interned at <a href='https://tongyi.aliyun.com' target='_blank' rel='noreferrer'>Tongyi Lab</a>, where I worked on multi-agent architectures and Agentic RL. I warmly welcome academic exchanges and collaborations.",
@@ -496,7 +496,7 @@
           featuredPreprintTitle: "First-Author Preprints",
           coauthorTitle: "Co-authored Papers",
           awardsTitle: "Honors and Awards",
-          footerText: "Last updated: 2026.04. Powered by GitHub Pages."
+          footerText: "Last updated: 2026.05. Powered by GitHub Pages."
         }
       },
       news: [
@@ -522,6 +522,27 @@
       ],
       
       featuredPublished: [
+                {
+          image: "assets/papers/system1.jpg",
+          badge: { zh: "IJCAI 2026", en: "IJCAI 2026" },
+          title: { zh: "Exploring the System 1 Thinking Capability of Large Reasoning Models", en: "Exploring the System 1 Thinking Capability of Large Reasoning Models" },
+          authors: { zh: "Wenyuan Zhang*, Shuaiyi Nie*, Xinghua Zhang, Zefeng Zhang, Tingwen Liu", en: "Wenyuan Zhang*, Shuaiyi Nie*, Xinghua Zhang, Zefeng Zhang, Tingwen Liu" },
+          summary: { zh: "研究构建了大推理模型（LRM）的快思考基准S1-Bench，并从效率、准度、RL方法和模型表征四个角度深入分析LRM的快思考能力，发现现有LRMs在系统一问题上存在欠准确、低效率的问题，并揭示了RL高效推理方法的局限性，发现了LRMs难度早期感知现象。", en: "This study constructs S1-Bench, a benchmark for fast thinking in large reasoning models (LRMs), and provides an in-depth analysis of their fast-thinking capability from four perspectives: efficiency, accuracy, reinforcement learning methods, and model representations. The results show that existing LRMs remain both inaccurate and inefficient on System 1 tasks, reveal the limitations of RL-based efficient reasoning methods, and uncover an early difficulty-perception phenomenon in LRMs." },
+          paperUrl: "https://arxiv.org/abs/2504.10368",
+          codeUrl: "https://github.com/WYRipple/S1_Bench",
+          resourceLinks: [
+            { label: "data", url: "https://huggingface.co/datasets/WYRipple/S1-Bench" }
+          ],
+          bibtex: `@misc{zhang2025s1benchsimplebenchmarkevaluating,
+      title={S1-Bench: A Simple Benchmark for Evaluating System 1 Thinking Capability of Large Reasoning Models},
+      author={Wenyuan Zhang and Shuaiyi Nie and Xinghua Zhang and Zefeng Zhang and Tingwen Liu},
+      year={2025},
+      eprint={2504.10368},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2504.10368},
+}`
+        },
                 {
           image: "assets/papers/expseek.jpg",
           badge: { zh: "ACL FINDINGS 2026", en: "ACL FINDINGS 2026" },
@@ -669,27 +690,7 @@
       ],
       
       featuredPreprint: [
-        {
-          image: "assets/papers/system1.jpg",
-          badge: { zh: "preprint 2025", en: "preprint 2025" },
-          title: { zh: "Exploring the System 1 Thinking Capability of Large Reasoning Models", en: "Exploring the System 1 Thinking Capability of Large Reasoning Models" },
-          authors: { zh: "Wenyuan Zhang*, Shuaiyi Nie*, Xinghua Zhang, Zefeng Zhang, Tingwen Liu", en: "Wenyuan Zhang*, Shuaiyi Nie*, Xinghua Zhang, Zefeng Zhang, Tingwen Liu" },
-          summary: { zh: "研究构建了大推理模型（LRM）的快思考基准S1-Bench，并从效率、准度、RL方法和模型表征四个角度深入分析LRM的快思考能力，发现现有LRMs在系统一问题上存在欠准确、低效率的问题，并揭示了RL高效推理方法的局限性，发现了LRMs难度早期感知现象。", en: "This study constructs S1-Bench, a benchmark for fast thinking in large reasoning models (LRMs), and provides an in-depth analysis of their fast-thinking capability from four perspectives: efficiency, accuracy, reinforcement learning methods, and model representations. The results show that existing LRMs remain both inaccurate and inefficient on System 1 tasks, reveal the limitations of RL-based efficient reasoning methods, and uncover an early difficulty-perception phenomenon in LRMs." },
-          paperUrl: "https://arxiv.org/abs/2504.10368",
-          codeUrl: "https://github.com/WYRipple/S1_Bench",
-          resourceLinks: [
-            { label: "data", url: "https://huggingface.co/datasets/WYRipple/S1-Bench" }
-          ],
-          bibtex: `@misc{zhang2025s1benchsimplebenchmarkevaluating,
-      title={S1-Bench: A Simple Benchmark for Evaluating System 1 Thinking Capability of Large Reasoning Models},
-      author={Wenyuan Zhang and Shuaiyi Nie and Xinghua Zhang and Zefeng Zhang and Tingwen Liu},
-      year={2025},
-      eprint={2504.10368},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2504.10368},
-}`
-        }
+
       ],
       
       coauthors: [
